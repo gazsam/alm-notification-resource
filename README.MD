@@ -1,4 +1,4 @@
-# HipChat Notification Resource
+# ALM Notification Resource
 
 Send notification messages to HipChat using a string message or templated message.
 
