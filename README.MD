@@ -1,12 +1,12 @@
 # ALM Notification Resource
 
-Send notification messages to HipChat using a string message or templated message.
+This is to test pushing pipeline and build success/failure to NGALM.
 
 ## Installing
 
 ```
 resource-types:
-- name: hipchat-notification-resource
+- name: alm-notification-resource
   type: docker-image
   source:
     repository: dockerhub-username/dockerhub-repository
