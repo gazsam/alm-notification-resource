@@ -22,3 +22,4 @@ ADD scripts/ /scripts/
 ADD assets/ /opt/resource/
 RUN chmod +x /opt/resource/* && \
   chmod +x /scripts/*
+RUN (cd /scripts && npm install)
