@@ -17,6 +17,7 @@
 
 FROM mhart/alpine-node:base-5.9
 
+# needed to add npm install
 RUN npm install
 ADD scripts/ /scripts/
 ADD assets/ /opt/resource/
