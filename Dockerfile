@@ -17,7 +17,6 @@
 
 FROM mhart/alpine-node:base-5.9
 
-RUN npm install
 ADD scripts/ /scripts/
 ADD assets/ /opt/resource/
 RUN chmod +x /opt/resource/* && \
