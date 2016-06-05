@@ -86,26 +86,26 @@ NGALMClient.prototype.connectALM = function (source, params, done) {
 
   //Now let's create a CI server.  This is idempotent so we should be able to do it on every check
 
-  // var requestUrl = '${source.ngalm_url}/shared_spaces/1001/workspaces/1002/ci_servers',
-  //   postBody = {
-  //     instance_id: "0",
-  //     name: "Concourse_"+,
-  //     url: ,
-  //     server_type:
-  //   },
-  //   requestOptions = {
-  //     url: requestUrl,
-  //     method: "POST",
-  //     json: {"data":[postBody]}
-  //   };
+  var requestUrl = '${source.ngalm_url}/shared_spaces/1001/workspaces/1002/ci_servers',
+    postBody = {
+      instance_id: "0",
+      name: "Concourse_test_sam"+,
+      url: "http://192.168.1.100:3000",
+      server_type: "Concourse server"
+    },
+    requestOptions = {
+      url: requestUrl,
+      method: "POST",
+      json: {"data":[postBody]}
+    };
 
-  // request(requestOptions, (err, response) => {
-  //   if (err || response.statusCode > 200) {
-  //     return done(err || response.body)
-  //   }
+  request(requestOptions, (err, response) => {
+    if (err || response.statusCode > 200) {
+      return done(err || response.body)
+    }
 
-  //   return done(err);
-  // });
+    return done(err);
+  });
 };
 
 NGALMClient.prototype.checkProperties = function (values, properties) {
