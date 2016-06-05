@@ -85,11 +85,10 @@ NGALMClient.prototype.connectALM = function (source, params, done) {
   });
 
   //Now let's create a CI server.  This is idempotent so we should be able to do it on every check
-
   var requestUrl = '${source.ngalm_url}/shared_spaces/1001/workspaces/1002/ci_servers',
     postBody = {
       instance_id: "0",
-      name: "Concourse_test_sam"+,
+      name: "Concourse_test_sam",
       url: "http://192.168.1.100:3000",
       server_type: "Concourse server"
     },
@@ -106,6 +105,7 @@ NGALMClient.prototype.connectALM = function (source, params, done) {
 
     return done(err);
   });
+
 };
 
 NGALMClient.prototype.checkProperties = function (values, properties) {
@@ -144,6 +144,7 @@ NGALMClient.prototype.connect = function (source, params) {
     }
 
     // Concourse expects this output from stdout, do not use console.dir
+    console.log('this should work');
     console.log(JSON.stringify({
       version: {
         ref: "none"
