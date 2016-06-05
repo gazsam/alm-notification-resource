@@ -81,7 +81,7 @@ NGALMClient.prototype.connectALM = function (source, params, done) {
       return done(err || response.body)
     }
 
-    return done(err);
+    //return done(err);
   });
 
   //Now let's create a CI server.  This is idempotent so we should be able to do it on every check
@@ -144,7 +144,8 @@ NGALMClient.prototype.connect = function (source, params) {
     }
 
     // Concourse expects this output from stdout, do not use console.dir
-    console.log('this should work');
+    console.log('this should work-printing out result');
+    console.log(result);
     console.log(JSON.stringify({
       version: {
         ref: "none"
