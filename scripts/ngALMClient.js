@@ -63,7 +63,8 @@ NGALMClient.prototype.checkArgument = function (argumentName, argumentValue) {
 };
 
 NGALMClient.prototype.connectALM = function (source, params, done) {
-  var requestUrl = `${source.ngalm_url}/authentication/sign_in`,
+  //First auth so that we can perform API calls
+  var requestUrl = '${source.ngalm_url}/authentication/sign_in',
     authBody = {
       client_id: source.client_id,
       client_secret: source.client_secret,
@@ -74,17 +75,6 @@ NGALMClient.prototype.connectALM = function (source, params, done) {
       json: authBody
     };
 
-  // if (params.color) {
-  //   hipChatMessage.color = params.color;
-  // }
-
-  // if (params.message_format) {
-  //   hipChatMessage.message_format = params.message_format;
-  // }
-
-  // if (params.notify) {
-  //   hipChatMessage.notify = params.notify;
-  // }
 
   request(requestOptions, (err, response) => {
     if (err || response.statusCode > 200) {
@@ -93,6 +83,29 @@ NGALMClient.prototype.connectALM = function (source, params, done) {
 
     return done(err);
   });
+
+  //Now let's create a CI server.  This is idempotent so we should be able to do it on every check
+
+  // var requestUrl = '${source.ngalm_url}/shared_spaces/1001/workspaces/1002/ci_servers',
+  //   postBody = {
+  //     instance_id: "0",
+  //     name: "Concourse_"+,
+  //     url: ,
+  //     server_type:
+  //   },
+  //   requestOptions = {
+  //     url: requestUrl,
+  //     method: "POST",
+  //     json: {"data":[postBody]}
+  //   };
+
+  // request(requestOptions, (err, response) => {
+  //   if (err || response.statusCode > 200) {
+  //     return done(err || response.body)
+  //   }
+
+  //   return done(err);
+  // });
 };
 
 NGALMClient.prototype.checkProperties = function (values, properties) {
