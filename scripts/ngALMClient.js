@@ -99,7 +99,10 @@ var requestUrl = '${source.ngalm_url}/shared_spaces/1001/workspaces/1002/ci_serv
   requestOptions = {
     url: requestUrl,
     method: "POST",
-    json: {"data":[postBody]}
+    json: {"data":[postBody]}//,
+    // headers: {
+    // "HPSSO-HEADER-CSRF": 'figure out how to generate CSFF, if needed'
+    // }
   };
 
 request(requestOptions, (err, response) => {
@@ -160,7 +163,7 @@ NGALMClient.prototype.connect = function (source, params) {
   console.log(result);
   console.log(JSON.stringify({
     version: {
-      ref: "none"
+      ref: "test"
     }
   }));
   process.exit(0);
