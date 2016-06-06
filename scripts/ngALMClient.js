@@ -84,27 +84,31 @@ NGALMClient.prototype.connectALM = function (source, params, done) {
     //return done(err);
   });
 
-  //Now let's create a CI server.  This is idempotent so we should be able to do it on every check
-  var requestUrl = '${source.ngalm_url}/shared_spaces/1001/workspaces/1002/ci_servers',
-    postBody = {
-      instance_id: "0",
-      name: "Concourse_test_sam",
-      url: "http://192.168.1.100:3000",
-      server_type: "Concourse server"
-    },
-    requestOptions = {
-      url: requestUrl,
-      method: "POST",
-      json: {"data":[postBody]}
-    };
+};
 
-  request(requestOptions, (err, response) => {
-    if (err || response.statusCode > 200) {
-      return done(err || response.body)
-    }
 
-    return done(err);
-  });
+NGALMClient.prototype.pipelineVersion = function (source, params, done) {
+//Now let's create a CI server.  This is idempotent so we should be able to do it on every check
+var requestUrl = '${source.ngalm_url}/shared_spaces/1001/workspaces/1002/ci_servers',
+  postBody = {
+    instance_id: "0",
+    name: "Concourse_test_sam",
+    url: "http://192.168.1.100:3000",
+    server_type: "Concourse server"
+  },
+  requestOptions = {
+    url: requestUrl,
+    method: "POST",
+    json: {"data":[postBody]}
+  };
+
+request(requestOptions, (err, response) => {
+  if (err || response.statusCode > 200) {
+    return done(err || response.body)
+  }
+
+  return done(err);
+});
 
 };
 
@@ -142,17 +146,25 @@ NGALMClient.prototype.connect = function (source, params) {
         process.exit(1);
       }
     }
-
-    // Concourse expects this output from stdout, do not use console.dir
-    console.log('this should work-printing out result');
-    console.log(result);
-    console.log(JSON.stringify({
-      version: {
-        ref: "none"
-      }
-    }));
-    process.exit(0);
   });
+  self.pipelineVersion(source, params, (error, result) => {
+  if (error) {
+    console.error(`Error sending notification. Fail on error: ${self.failOnError}`);
+    console.error(error);
+    if (self.failOnError) {
+      process.exit(1);
+    }
+  }
+  // Concourse expects this output from stdout, do not use console.dir
+  console.log('this should work-printing out result');
+  console.log(result);
+  console.log(JSON.stringify({
+    version: {
+      ref: "none"
+    }
+  }));
+  process.exit(0);
+});
 }
 
 module.exports = NGALMClient;
