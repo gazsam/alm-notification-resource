@@ -205,7 +205,7 @@ NGALMClient.prototype.run = function (source, params) {
     }));
     process.exit(0);
   });
-}
+};
 
 
 NGALMClient.prototype.connect = function (source, params) {
@@ -252,6 +252,6 @@ NGALMClient.prototype.connect = function (source, params) {
   }));
   process.exit(0);
 });
-}
+};
 
 module.exports = NGALMClient;
