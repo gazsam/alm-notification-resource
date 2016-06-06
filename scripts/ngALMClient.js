@@ -113,7 +113,7 @@ NGALMClient.prototype.checkArgument = function (argumentName, argumentValue) {
 //   return done(err);
 // });
 
-};
+//}
 
 NGALMClient.prototype.checkProperties = function (values, properties) {
   for (property of properties) {
