@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var HipChatClient = require('./hipChatClient'),
+var HipChatClient = require('./ngALMClient'),
   tokenReplacer = require('./tokenReplacement'),
   stdin = process.stdin,
   inputChunks = [];
@@ -36,7 +36,7 @@ stdin.on('end', function () {
       process.exit(1);
     }
     parsedData.params.message = newMessage;
-    new HipChatClient().run(parsedData.source, parsedData.params);
+    new ngALMClient().run(parsedData.source, parsedData.params);
   });
 });
 
