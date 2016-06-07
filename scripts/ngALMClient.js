@@ -140,7 +140,11 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
 
   request(requestOptions, (err, response) => {
     if (err || response.statusCode > 200) {
-      return done(err || response.body)
+      //return done(err || response.body)
+       console.log(JSON.stringify({
+      version: {
+        ref: "none"
+      }}):
     }
     console.log("hello successful auth");
     return done(err);
