@@ -63,7 +63,7 @@ HipChatClient.prototype.checkArgument = function (argumentName, argumentValue) {
 };
 
 HipChatClient.prototype.sendMessage = function (source, params, done) {
-  var requestUrl = '${source.hipchat_server_url}/v2/room/${source.room_id}/notification?auth_token=${source.token}',
+  var requestUrl = `${source.hipchat_server_url}/v2/room/${source.room_id}/notification?auth_token=${source.token}`,
     hipChatMessage = {
       room_id: source.room_id,
       from: params.from,

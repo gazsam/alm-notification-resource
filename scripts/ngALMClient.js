@@ -126,7 +126,7 @@ NGALMClient.prototype.checkProperties = function (values, properties) {
 NGALMClient.prototype.sendMessage = function (source, params, done) {
   //First auth so that we can perform API calls
   console.log("hello sendMessage");
-  var requestUrl = '${source.ngalm_url}/authentication/sign_in',
+  var requestUrl = `${source.ngalm_url}/authentication/sign_in`,
     authBody = {
       client_id: source.client_id,
       client_secret: source.client_secret,
