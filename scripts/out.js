@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var HipChatClient = require('./ngALMClient'),
+var ngALMClient = require('./ngALMClient'),
   tokenReplacer = require('./tokenReplacement'),
   stdin = process.stdin,
   inputChunks = [];
