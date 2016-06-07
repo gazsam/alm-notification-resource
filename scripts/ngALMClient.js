@@ -144,7 +144,8 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
        console.log(JSON.stringify({
       version: {
         ref: "none"
-      }}):
+      }
+      }));
     }
     console.log("hello successful auth");
     return done(err);
