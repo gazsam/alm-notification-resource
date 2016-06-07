@@ -123,6 +123,8 @@ HipChatClient.prototype.run = function (source, params) {
 
   self.sendMessage(source, params, (error, result) => {
     if (error) {
+      console.log("I had an error");
+      console.log(error);
       console.error(`Error sending notification. Fail on error: ${self.failOnError}`);
       console.error(error);
       if (self.failOnError) {
