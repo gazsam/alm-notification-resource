@@ -125,7 +125,6 @@ NGALMClient.prototype.checkProperties = function (values, properties) {
 
 NGALMClient.prototype.sendMessage = function (source, params, done) {
   //First auth so that we can perform API calls
-  console.error("hello sendMessage");
   var requestUrl = `${source.ngalm_url}/authentication/sign_in`,
     authBody = {
       client_id: source.client_id,
@@ -193,7 +192,6 @@ NGALMClient.prototype.run = function (source, params) {
     console.error("Please provide valid input and try again");
     return process.exit(1);
   }
-  console.error('Im actually here in run');
   self.sendMessage(source, params, (error, result) => {
     if (error) {
       console.error(`Error sending notification. Fail on error: ${self.failOnError}`);
