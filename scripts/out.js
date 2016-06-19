@@ -36,6 +36,7 @@ stdin.on('end', function () {
       process.exit(1);
     }
     parsedData.params.message = newMessage;
+    console.error('Im actually here');
     new ngALMClient().run(parsedData.source, parsedData.params);
   });
 });
