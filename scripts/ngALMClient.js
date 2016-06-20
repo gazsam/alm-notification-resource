@@ -141,33 +141,34 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
     if (err || response.statusCode > 200) {
       return done(err || response.body)
     }
-    return done(err);
+    //return done(err);
+    //Now let's create a CI server.  This is idempotent so we should be able to do it on every check
+    var requestUrl = '${source.ngalm_url}/shared_spaces/1001/workspaces/1002/ci_servers',
+      postBody = {
+        instance_id: "0",
+        name: "Concourse_test_sam",
+        url: "http://192.168.1.100:3000",
+        server_type: "Concourse server"
+      },
+      requestOptions = {
+        url: requestUrl,
+        method: "POST",
+        json: {"data":[postBody]}//,
+        // headers: {
+        // "HPSSO-HEADER-CSRF": 'figure out how to generate CSFF, if needed'
+        // }
+      };
+
+    request(requestOptions, (err, response) => {
+      if (err || response.statusCode > 200) {
+        return done(err || response.body)
+      }
+      console.error('looks like weve created a CI server');
+      console.error(response);
+      return done(err);
+    });
   });
 
-  //Now let's create a CI server.  This is idempotent so we should be able to do it on every check
-  // var requestUrl = '${source.ngalm_url}/shared_spaces/1001/workspaces/1002/ci_servers',
-  //   postBody = {
-  //     instance_id: "0",
-  //     name: "Concourse_test_sam",
-  //     url: "http://192.168.1.100:3000",
-  //     server_type: "Concourse server"
-  //   },
-  //   requestOptions = {
-  //     url: requestUrl,
-  //     method: "POST",
-  //     json: {"data":[postBody]}//,
-  //     // headers: {
-  //     // "HPSSO-HEADER-CSRF": 'figure out how to generate CSFF, if needed'
-  //     // }
-  //   };
-
-  // request(requestOptions, (err, response) => {
-  //   if (err || response.statusCode > 200) {
-  //     return done(err || response.body)
-  //   }
-
-  //   return done(err);
-  // });
 };
 
 NGALMClient.prototype.run = function (source, params) {
@@ -193,7 +194,6 @@ NGALMClient.prototype.run = function (source, params) {
         process.exit(1);
       }
     }
-    console.error(result);
     // Concourse expects this output from stdout, do not use console.dir
     console.log(JSON.stringify({
       version: {
