@@ -136,7 +136,7 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
       json: authBody
     };
 
-
+  console.error('hi from request with error- hello');
   request(requestOptions, (err, response) => {
     if (err || response.statusCode > 200) {
       //return done(err || response.body)
