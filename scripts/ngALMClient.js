@@ -142,7 +142,7 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
     }
     //return done(err);
     //Now let's create a CI server.  This is idempotent so we should be able to do it on every check
-    var requestUrl = '${source.ngalm_url}/shared_spaces/1001/workspaces/1002/ci_servers',
+    var requestUrl = `${source.ngalm_url}/shared_spaces/1001/workspaces/1002/ci_servers`,
       postBody = {
         instance_id: "0",
         name: "Concourse_test_sam",
@@ -161,7 +161,7 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
     request(requestOptions, (err, response) => {
       if (err || response.statusCode > 200) {
         console.error('nope CI server failed');
-        console.error(response);
+        console.error(err);
         return done(err || response.body)
       }
       console.error('looks like weve created a CI server');
