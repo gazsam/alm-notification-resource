@@ -136,7 +136,6 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
       json: authBody
     };
 
-  console.error(requestOptions);
   request(requestOptions, (err, response) => {
     if (err || response.statusCode > 200) {
       return done(err || response.body)
@@ -161,6 +160,8 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
 
     request(requestOptions, (err, response) => {
       if (err || response.statusCode > 200) {
+        console.error('nope CI server failed');
+        console.error(response);
         return done(err || response.body)
       }
       console.error('looks like weve created a CI server');
