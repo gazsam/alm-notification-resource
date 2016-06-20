@@ -139,14 +139,10 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
   console.error(requestOptions);
   request(requestOptions, (err, response) => {
     if (err || response.statusCode > 200) {
-      //return done(err || response.body)
-       console.log(JSON.stringify({
-      version: {
-        ref: "none"
-      }
-      }));
+      console.error("here-142");
+      return done(err || response.body)
     }
-    console.log("hello successful auth");
+    console.error("hello successful auth");
     return done(err);
   });
 
@@ -194,13 +190,14 @@ NGALMClient.prototype.run = function (source, params) {
   }
   self.sendMessage(source, params, (error, result) => {
     if (error) {
-      console.error(`Error sending notification. Fail on error: ${self.failOnError}`);
+      console.error("I got bak to 193");
       console.error(error);
+      console.error(`Error sending notification. Fail on error: ${self.failOnError}`);
       if (self.failOnError) {
         process.exit(1);
       }
     }
-
+    console.error('message came back');
     // Concourse expects this output from stdout, do not use console.dir
     console.log(JSON.stringify({
       version: {

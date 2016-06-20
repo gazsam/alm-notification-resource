@@ -89,9 +89,6 @@ HipChatClient.prototype.sendMessage = function (source, params, done) {
  
   request(requestOptions, (err, response) => {
     if (err || response.statusCode > 200) {
-    console.error('hi from request with error');
-    console.error(err);
-    console.error(response.body);
       return done(err || response.body)
     }
 
