@@ -91,7 +91,9 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
     console.error('I authed?');
     console.error(response.body);
     console.error(response);
-    console.error(response.statusCode);
+    console.error(response.headers);
+    console.error(response.headers['HPSSO-HEADER-CSRF']);
+    console.error(response.headers.rawHeaders['HPSSO-HEADER-CSRF']);
     //Now let's create a CI server.  This is idempotent so we should be able to do it on every check
     var requestUrl = `${source.ngalm_url}/shared_spaces/1001/workspaces/1002/ci_servers`,
       postBody = {
@@ -104,9 +106,9 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
         url: requestUrl,
         method: "POST",
         json: {"data":[postBody]}//,
-        // headers: {
-        // "HPSSO-HEADER-CSRF": 'figure out how to generate CSFF, if needed'
-        // }
+        headers: {
+        "HPSSO-HEADER-CSRF": '39avim11hie0nc4frphhfgbq0u'
+        }
       };
 
     request(requestOptions, (err, response) => {
