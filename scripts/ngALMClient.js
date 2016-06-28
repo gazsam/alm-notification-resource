@@ -90,6 +90,7 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
     //return done(err);
     console.error('I authed?');
     console.error(response.body);
+    console.error(response);
     console.error(response.statusCode);
     //Now let's create a CI server.  This is idempotent so we should be able to do it on every check
     var requestUrl = `${source.ngalm_url}/shared_spaces/1001/workspaces/1002/ci_servers`,
