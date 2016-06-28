@@ -161,7 +161,9 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
     request(requestOptions, (err, response) => {
       if (err || response.statusCode > 200) {
         console.error('nope CI server failed');
-        console.error(err);
+        console.error(response.body);
+        console.error(response);
+        console.error(response.statusCode);
         return done(err || response.body)
       }
       console.error('looks like weve created a CI server');
