@@ -90,6 +90,11 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
     //return done(err);
     console.error('I authed?');
     console.error(response.body);
+    console.error('cookie?');
+    console.error(response.cookie);
+    console.error('specific cookie?');
+    console.error(response.cookie['HPSSO-HEADER-CSRF']);
+    console.error('the whole response header');
     console.error(response.headers);
     //console.error(response.headers['HPSSO-HEADER-CSRF']);
     //console.error(response.headers.rawHeaders['HPSSO-HEADER-CSRF']);
@@ -106,7 +111,7 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
         method: "POST",
         json: {"data":[postBody]},//,
         headers: {
-        "HPSSO-HEADER-CSRF": '39avim11hie0nc4frphhfgbq0u'
+        "HPSSO-HEADER-CSRF": 'pmsu4pomun8eb4d2p3ng0rg1j'
         }
       };
 
