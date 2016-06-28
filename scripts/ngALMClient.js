@@ -105,7 +105,7 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
       requestOptions = {
         url: requestUrl,
         method: "POST",
-        json: {"data":[postBody]}//,
+        json: {"data":[postBody]},//,
         headers: {
         "HPSSO-HEADER-CSRF": '39avim11hie0nc4frphhfgbq0u'
         }
