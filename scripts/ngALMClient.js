@@ -90,16 +90,9 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
     //return done(err);
     console.error('the whole response header');
     console.error(response.headers);
-    var header = JSON.parse(response.headers);
-    console.error('now ive parse it');
-    console.error(header)
-    console.error('now exploring it');
-    console.error(header['HPSSO-HEADER-CSRF']);
-    console.error('and again');
-    console.error(header.rawHeaders);
-    console.error('once more');
-    console.error(header.rawHeaders['HPSSO-HEADER-CSRF']);
-
+    var headers = response.headers;
+    var hpsso = headers.match('(?<=HPSSO_COOKIE_CSRF=)(.*)(?=;Version)');
+    console.log(hpsso);
 
     //console.error(response.headers['HPSSO-HEADER-CSRF']);
     //console.error(response.headers.rawHeaders['HPSSO-HEADER-CSRF']);
