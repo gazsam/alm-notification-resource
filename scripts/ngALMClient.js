@@ -91,7 +91,7 @@ NGALMClient.prototype.sendMessage = function (source, params, done) {
     console.error('the whole response header');
     console.error(response.headers);
     var headers = response.headers;
-    var hpsso = response.headers.toString().match('(?<=HPSSO_COOKIE_CSRF=)(.*)(?=;Version)');
+    var hpsso = response.headers.toString().match("HPSSO_COOKIE_CSRF=(.*?);Version");
     console.log(hpsso);
     console.log(hpsso[0]);
 
